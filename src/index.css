@@ -32,52 +32,64 @@ html, body {
   height: 100%;
 }
 
+.GolfClubHouse {
+  height: 100%;
+}
+
 .GolfRound {
   height: 100%;
 }
 
 .GolfScoreCard {
   height: 100%;
-}
-
-.GolferScoreCard {
-  height: 100%;
   display: flex;
   flex-direction: column;
 }
 
-.playerScores {
+.GolferScoreCardScores {
   flex: 1;
   display: flex;
   flex-direction: column;
 }
 
-.playerScores > * {
+.GolferScoreCardScores > * {
   border: solid black 5px;
   justify-content: space-around;
 }
 
-.playerScores > *  {
+.GolferScoreCardScores > *  {
   border: solid black 1px;
 }
 
-.scoreCardHeaders {
+.GolferScoreCardScoresHeader {
   display: flex;
 }
 
-.scoreCardScores {
+.GolferScoreCardScores {
   flex: 1;
   display: flex;
   flex-direction: column;
 }
 
-.scoreCardHole {
+.GolferScoreCardScoresNine {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.GolferScoreCardScoresNineHoles {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.GolferScoreCardHole {
   flex: 1;
   display: flex;
   justify-content: space-around;
 }
 
-.scoreCardHole > * {
+.GolferScoreCardHole > * {
   display: inherit;
   align-items: center;
   justify-content: center;
@@ -88,17 +100,12 @@ html, body {
   justify-content: space-evenly;
 }
 
-.scoreCardTotals {
-  display: flex;
-  flex-direction: column;
-}
-
-.scoreCardTotalsRow {
+.GolferScoreCardScoresNineTotals, .GolferScoreCardTotals {
   display: flex;
   justify-content: space-around;
 }
 
-.scoreCardHole > *, .scoreCardTotalsRow > * {
+.GolferScoreCardHole > *, .GolferScoreCardTotals > *, .GolferScoreCardScoresNineTotals > * {
   flex: 1;
   border: solid black 1px;
 }
