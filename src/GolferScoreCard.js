@@ -1,6 +1,8 @@
 import React from 'react'
+import { Route, Link } from 'react-router-dom'
 
-export default function GolferScoreCard({player, holes, currentCourse, currentCourseScores, holeScores}) {
+export default function GolferScoreCard(props) {
+    const {player, holes, currentCourse, currentCourseScores, holeScores} = props
     const playerHoles = holes.filter(hole => hole.course_id === currentCourse.id)
     const playerCourseScore = currentCourseScores.find(ccs => ccs.player_id === player.id)
     const playerHoleScores = holeScores.filter(holeScore => holeScore.course_score_id === playerCourseScore.id)
@@ -10,8 +12,16 @@ export default function GolferScoreCard({player, holes, currentCourse, currentCo
             <div className='playerScores'>
                 <div className='scoreCardHeaders'>
                     <h6>Hole #</h6>
-                    <h6>Par</h6>
-                    <h6>Shots</h6>
+                    <Link to={props.location.pathname.includes(`editPar`) ?
+                        `${props.location.pathname.replace(`/editPar/`, '/')}` :
+                        `/editPar${props.location.pathname}`}>
+                        <h6>Par</h6>
+                    </Link>
+                    <Link to={props.location.pathname.includes(`editShots`) ?
+                        `${props.location.pathname.replace(`/editShots/`, '/')}` :
+                        `/editShots${props.location.pathname}`}>
+                        <h6>Shots</h6>
+                    </Link>
                     <h6>Score</h6>
                 </div>
                 <div className='scoreCardScores'>
@@ -20,9 +30,21 @@ export default function GolferScoreCard({player, holes, currentCourse, currentCo
                         const playerScore = phs.shots - playerHoles.find(hole => hole.id === phs.hole_id).par
                         return (
                             <div key={phs.id} className='scoreCardHole'>
-                                <h6>{hole.number}</h6>
-                                <h6>{hole.par}</h6>
-                                <h6>{phs.shots}</h6>
+                                <Link to={props.location.pathname.includes(hole.id) ?
+                                    `${props.location.pathname.replace(`${hole.id}/`, '')}` :
+                                    `${props.location.pathname}${hole.id}/`}>
+                                    <h6>{hole.number}</h6>
+                                </Link>
+                                <div className='scoreCardHolePar'>
+                                    <Route path={`/:path?(.*editPar.*)${hole.id}`} component={() => <h6> - </h6>}/>
+                                    <h6>{hole.par}</h6>
+                                    <Route path={`/:path?(.*editPar.*)${hole.id}`} component={() => <h6> + </h6>}/>
+                                </div>
+                                <div className='scoreCardPlayerHoleShots'>
+                                    <Route path={`/:path?(.*editShots.*)${hole.id}`} component={() => <h6> - </h6>}/>
+                                    <h6>{phs.shots}</h6>
+                                    <Route path={`/:path?(.*editShots.*)${hole.id}`} component={() => <h6> + </h6>}/>
+                                </div>
                                 <h6>{playerScore}</h6>
                             </div>
                         )
