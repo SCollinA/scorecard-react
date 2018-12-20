@@ -46,6 +46,19 @@ html, body {
   flex-direction: column;
 }
 
+.GolferScoreCardHeader {
+  display: flex;
+  justify-content: space-around;
+}
+
+.playerName, .playerScore {
+  flex: 1;
+}
+
+.GolferScoreCardHeader > button {
+  margin: auto;
+}
+
 .GolferScoreCardScores {
   flex: 1;
   display: flex;
@@ -98,6 +111,10 @@ html, body {
 .scoreCardHolePar, .scoreCardPlayerHoleShots {
   display: flex;
   justify-content: space-evenly;
+}
+
+.scoreCardPlayerHoleShots > * {
+  flex: 1;
 }
 
 .GolferScoreCardScoresNineTotals, .GolferScoreCardTotals {

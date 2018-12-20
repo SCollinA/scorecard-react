@@ -1,9 +1,9 @@
 import React from 'react'
 import { Route, Link } from 'react-router-dom'
-import GolfIncrementShots from './GolfIncrementShots'
-import GolfDecrementShots from './GolfDecrementShots'
-import GolfIncrementPar from './GolfIncrementPar'
-import GolfDecrementPar from './GolfDecrementPar'
+import GolfIncrementShots from '../actions/GolfIncrementShots'
+import GolfDecrementShots from '../actions/GolfDecrementShots'
+import GolfIncrementPar from '../actions/GolfIncrementPar'
+import GolfDecrementPar from '../actions/GolfDecrementPar'
 
 export default function GolferScoreCardHole({phs, playerScore, location, updateCurrentHole, updateCurrentHoleScore, hole}) {
     return (
@@ -21,13 +21,13 @@ export default function GolferScoreCardHole({phs, playerScore, location, updateC
                 render={() => <GolfIncrementPar updateCurrentHole={updateCurrentHole} hole={hole} />}/>
             </div>
             <div className='scoreCardPlayerHoleShots'>
-                <Route path={`/:path?(.*editShots.*)${hole.id}`} 
-                render={() => <GolfDecrementShots updateCurrentHoleScore={updateCurrentHoleScore} phs={phs} />}/>
-                <h6>{phs.shots}</h6>
+                {phs.shots > 0 && <Route path={`/:path?(.*editShots.*)${hole.id}`} 
+                render={() => <GolfDecrementShots updateCurrentHoleScore={updateCurrentHoleScore} phs={phs} />}/>}
+                <h6>{phs.shots === 0 ? '' : phs.shots}</h6>
                 <Route path={`/:path?(.*editShots.*)${hole.id}`} 
                 render={() => <GolfIncrementShots updateCurrentHoleScore={updateCurrentHoleScore} phs={phs} />}/>
                 </div>
-            <h6>{playerScore}</h6>
+            <h6>{phs.shots === 0 ? '' : (playerScore === 0 ? 'E' : `${playerScore > 0 ? '+' : ''}${playerScore}`)}</h6>
         </div>
     )
 }
