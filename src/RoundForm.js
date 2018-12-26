@@ -6,16 +6,22 @@ export default function RoundForm({selectedCourse, selectedGolfers, selectCourse
     return (
         <div className="RoundForm">
             <div className="chooseCourseForm">
+                <ul>
+                    <li>{selectedCourse.name}</li>
+                </ul>
                 <CourseSearch
-                    searchItems={(!courseSearchTerm && (selectedCourse._id && [selectedCourse])) || golfState.courses}
+                    searchItems={golfState.courses.filter(course => course._id !== selectedCourse._id)}
                     selectCourse={selectCourse} 
                     courseSearchTerm={courseSearchTerm}
                     updateCourseSearchTerm={updateCourseSearchTerm}
                 />
             </div>
             <div className="chooseGolfersForm">
+                <ul>
+                    {selectedGolfers.map(golfer => <li key={golfer._id}>{golfer.name}</li>)}
+                </ul>
                 <GolferSearch
-                    searchItems={[...selectedGolfers, ...golfState.golfers]} 
+                    searchItems={golfState.golfers.filter(golfer => !selectedGolfers.map(sg => sg._id).includes(golfer._id))} 
                     selectGolfer={selectGolfer}
                     golferSearchTerm={golferSearchTerm}
                     updateGolferSearchTerm={updateGolferSearchTerm}
