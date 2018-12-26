@@ -7,6 +7,8 @@ const defaultState = {
     golferSearchTerm: '',
     searchResults: [], // golfer or courses that match searchterm
     edit: {}, // object to edit, course/golfer
+    selectedCourse: {},
+    selectedGolfers: [],
     golfState: {
         golfer: {}, // logged in golfer
         golfers: [], // all other golfers
@@ -65,6 +67,12 @@ const UPDATE_COURSE_SEARCH_TERM = {
 }
 const UPDATE_GOLFER_SEARCH_TERM = {
     type: 'UPDATE_GOLFER_SEARCH_TERM'
+}
+const SELECT_COURSE = {
+    type: 'SELECT_COURSE'
+}
+const SELECT_GOLFER = {
+    type: 'SELECT_GOLFER'
 }
 // Delete
 const DELETE_COURSE = {
@@ -219,6 +227,18 @@ export const updateGolferSearchTerm = (searchTerm) => {
         searchTerm
     }
 }
+export const selectCourse = (course) => {
+    return {
+        ...SELECT_COURSE,
+        course
+    }
+}
+export const selectGolfer = (golfer) => {
+    return {
+        ...SELECT_GOLFER,
+        golfer
+    }
+}
 // Delete
 export const deleteCourse = (course) => {
     return {
@@ -328,6 +348,17 @@ const scorecard = (state=defaultState, action) => {
         return {
             ...state,
             golferSearchTerm: action.searchTerm
+        }
+        case SELECT_COURSE.type:
+        return {
+            ...state,
+            selectedCourse: action.course
+        }
+        case SELECT_GOLFER.type:
+        return {
+            ...state,
+            selectedGolfers: [...state.selectedGolfers.filter(golfer => golfer._id !== action.golfer._id),
+            action.golfer]
         }
         // Delete
         case DELETE_COURSE.type:

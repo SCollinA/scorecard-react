@@ -48,6 +48,12 @@ const mapDispatchToProps = (dispatch) => {
         updateGolferSearchTerm: (searchTerm) => {
             dispatch(actions.updateGolferSearchTerm(searchTerm))
         },
+        selectCourse: (course) => {
+            dispatch(actions.selectCourse(course))
+        },
+        selectGolfer: (golfer) => {
+            dispatch(actions.selectGolfer(golfer))
+        },
         // Delete
         deleteCourse: (course) => {
             dispatch(actions.deleteCourse(course))
