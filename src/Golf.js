@@ -15,6 +15,8 @@ export default function Golf(props) {
     return (props.isLoading && <LoadingPage />) ||
     // not logged in or at login page
     ((!isLoggedIn && (props.location.pathname !== '/login' && <Redirect to='/login'/>)) ||
+    // logged in and at login page
+    (isLoggedIn && (props.location.pathname === '/login' && <Redirect to='/'/>)) ||
     (   <div className="Golf">
             <GolfNav {...props} />
             <Switch>
