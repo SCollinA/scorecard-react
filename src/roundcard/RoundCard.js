@@ -6,17 +6,16 @@ import GolferCard from './GolferCard'
 export default function RoundCard({currentUser, group, updateHoleScore, updateCurrentHole}) {
     return (
         <div className="RoundCard">
-            <Route exact path=''
+            <Route exact path='/round'
             render={routeProps => {
                 return (
                     <Leaderboard group={group}/>
                 )
             }}/>
             {group.golfers.map(golfer => {
-                console.log(golfer._id)
                 return (
                     <Route key={golfer._id}
-                        exact path={`/${golfer.name}`}
+                        exact path={`/round/${golfer.name}`}
                         render={routeProps => {
                             return (
                                 <GolferCard key={golfer._id} 

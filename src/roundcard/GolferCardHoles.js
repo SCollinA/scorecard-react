@@ -7,9 +7,9 @@ export default function GolferCardHoles({holeScores, startHoleNum, endHoleNum, c
             {holeScores.slice(startHoleNum, endHoleNum)
                 .map(holeScore => {
                     return (
-                        <GolferCardHole key={holeScore.id}
+                        <GolferCardHole key={holeScore._id}
                             holeScore={holeScore}
-                            currentHole={holeScore.hole.id === currentHole.id}
+                            currentHole={holeScore.hole._id === currentHole._id}
                             updateCurrentHole={updateCurrentHole}
                             updateHoleScore={updateHoleScore}
                             isCurrentUser={isCurrentUser}

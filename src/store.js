@@ -140,7 +140,6 @@ export const requestGolfState = () => {
     }
 }
 const receiveGolfState = (golfState) => {
-    console.log('receiving golf state')
     return {
         ...RECEIVE_GOLF_STATE,
         golfState,

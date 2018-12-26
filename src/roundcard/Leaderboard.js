@@ -6,7 +6,7 @@ export default function Leaderboard({group}) {
         <div className="Leaderboard">
             {group.golfers.map(golfer => { 
                 return (
-                    <Link key={golfer._id} to={`/${golfer.name}`}>
+                    <Link key={golfer._id} to={`round/${golfer.name}`}>
                         {golfer.name}
                         {golfer.currentCourseScore.holeScores.map(holeScore => holeScore.shots)
                         .reduce((prevScore, currScore) => prevScore + currScore)}
