@@ -42,8 +42,11 @@ const mapDispatchToProps = (dispatch) => {
         updateHoleScore: (holeScore) => {
             dispatch(actions.updateHoleScore(holeScore))
         },
-        updateSearchTerm: (searchTerm) => {
-            dispatch(actions.updateSearchTerm(searchTerm))
+        updateCourseSearchTerm: (searchTerm) => {
+            dispatch(actions.updateCourseSearchTerm(searchTerm))
+        },
+        updateGolferSearchTerm: (searchTerm) => {
+            dispatch(actions.updateGolferSearchTerm(searchTerm))
         },
         // Delete
         deleteCourse: (course) => {

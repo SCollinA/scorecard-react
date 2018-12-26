@@ -3,7 +3,8 @@ import { createStore } from 'redux'
 // set up default state
 const defaultState = {
     isLoading: false,
-    searchTerm: '',
+    courseSearchTerm: '',
+    golferSearchTerm: '',
     searchResults: [], // golfer or courses that match searchterm
     edit: {}, // object to edit, course/golfer
     golfState: {
@@ -59,8 +60,11 @@ const UPDATE_CURRENT_HOLE = {
 const UPDATE_HOLE_SCORE = {
     type: 'UPDATE_HOLE_SCORE'
 }
-const UPDATE_SEARCH_TERM = {
-    type: 'UPDATE_SEARCH_TERM'
+const UPDATE_COURSE_SEARCH_TERM = {
+    type: 'UPDATE_COURSE_SEARCH_TERM'
+}
+const UPDATE_GOLFER_SEARCH_TERM = {
+    type: 'UPDATE_GOLFER_SEARCH_TERM'
 }
 // Delete
 const DELETE_COURSE = {
@@ -203,9 +207,15 @@ export const updateHoleScore = (holeScore) => {
         isLoading: true
     }
 }
-export const updateSearchTerm = (searchTerm) => {
+export const updateCourseSearchTerm = (searchTerm) => {
     return {
-        ...UPDATE_SEARCH_TERM,
+        ...UPDATE_COURSE_SEARCH_TERM,
+        searchTerm
+    }
+}
+export const updateGolferSearchTerm = (searchTerm) => {
+    return {
+        ...UPDATE_GOLFER_SEARCH_TERM,
         searchTerm
     }
 }
@@ -309,7 +319,12 @@ const scorecard = (state=defaultState, action) => {
                 hole: action.hole
             }
         }
-        case UPDATE_SEARCH_TERM.type:
+        case UPDATE_COURSE_SEARCH_TERM.type:
+        return {
+            ...state,
+            searchTerm: action.searchTerm
+        }
+        case UPDATE_GOLFER_SEARCH_TERM.type:
         return {
             ...state,
             searchTerm: action.searchTerm

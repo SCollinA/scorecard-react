@@ -36,7 +36,8 @@ export default function Golf(props) {
                     render={routeProps => {
                         return (
                             <RoundForm golfState={golfState} 
-                                searchTerm={props.searchTerm} 
+                                courseSearchTerm={props.courseSearchTerm} 
+                                golferSearchTerm={props.golferSearchTerm} 
                                 updateSearchTerm={props.updateSearchTerm} 
                                 addGroup={props.addGroup}
                             />

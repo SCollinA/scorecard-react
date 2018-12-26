@@ -1,21 +1,22 @@
 import React from 'react'
-import GolfSearch from './GolfSearch'
+import CourseSearch from './CourseSearch'
+import GolferSearch from './GolferSearch'
 
-export default function RoundForm({golfState, searchTerm, updateSearchTerm, addGroup}) {
+export default function RoundForm({golfState, courseSearchTerm, golferSearchTerm, updateCourseSearchTerm, updateGolferSearchTerm, addGroup}) {
     return (
         <div className="RoundForm">
             <div className="chooseCourseForm">
-                <GolfSearch type='courses'
+                <CourseSearch type='Course'
                     searchItems={golfState.courses} 
-                    searchTerm={searchTerm}
-                    updateSearchTerm={updateSearchTerm}
+                    courseSearchTerm={courseSearchTerm}
+                    updateSearchTerm={updateCourseSearchTerm}
                 />
             </div>
             <div className="chooseGolfersForm">
-                <GolfSearch type='golfers'
+                <GolferSearch type='Golfer'
                     searchItems={golfState.golfers} 
-                    searchTerm={searchTerm}
-                    updateSearchTerm={updateSearchTerm}
+                    golferSearchTerm={golferSearchTerm}
+                    updateSearchTerm={updateGolferSearchTerm}
                 />
             </div>
             <button onClick={() => addGroup({course: golfState.courses[0], golfers: [golfState.golfer]})}>tee off</button>
