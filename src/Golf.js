@@ -38,7 +38,8 @@ export default function Golf(props) {
                             <RoundForm golfState={golfState} 
                                 courseSearchTerm={props.courseSearchTerm} 
                                 golferSearchTerm={props.golferSearchTerm} 
-                                updateSearchTerm={props.updateSearchTerm} 
+                                updateCourseSearchTerm={props.updateCourseSearchTerm} 
+                                updateGolferSearchTerm={props.updateGolferSearchTerm} 
                                 addGroup={props.addGroup}
                             />
                         )

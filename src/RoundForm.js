@@ -9,14 +9,14 @@ export default function RoundForm({golfState, courseSearchTerm, golferSearchTerm
                 <CourseSearch type='Course'
                     searchItems={golfState.courses} 
                     courseSearchTerm={courseSearchTerm}
-                    updateSearchTerm={updateCourseSearchTerm}
+                    updateCourseSearchTerm={updateCourseSearchTerm}
                 />
             </div>
             <div className="chooseGolfersForm">
                 <GolferSearch type='Golfer'
                     searchItems={golfState.golfers} 
                     golferSearchTerm={golferSearchTerm}
-                    updateSearchTerm={updateGolferSearchTerm}
+                    updateGolferSearchTerm={updateGolferSearchTerm}
                 />
             </div>
             <button onClick={() => addGroup({course: golfState.courses[0], golfers: [golfState.golfer]})}>tee off</button>

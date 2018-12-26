@@ -322,12 +322,12 @@ const scorecard = (state=defaultState, action) => {
         case UPDATE_COURSE_SEARCH_TERM.type:
         return {
             ...state,
-            searchTerm: action.searchTerm
+            courseSearchTerm: action.searchTerm
         }
         case UPDATE_GOLFER_SEARCH_TERM.type:
         return {
             ...state,
-            searchTerm: action.searchTerm
+            golferSearchTerm: action.searchTerm
         }
         // Delete
         case DELETE_COURSE.type:
