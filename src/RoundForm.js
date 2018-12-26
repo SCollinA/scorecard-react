@@ -2,7 +2,7 @@ import React from 'react'
 import CourseSearch from './CourseSearch'
 import GolferSearch from './GolferSearch'
 
-export default function RoundForm({selectedCourse, selectedGolfers, selectCourse, selectGolfer, golfState, courseSearchTerm, golferSearchTerm, updateCourseSearchTerm, updateGolferSearchTerm, addGroup}) {
+export default function RoundForm({history, selectedCourse, selectedGolfers, selectCourse, selectGolfer, golfState, courseSearchTerm, golferSearchTerm, updateCourseSearchTerm, updateGolferSearchTerm, addGroup}) {
     return (
         <div className="RoundForm">
             <div className="chooseCourseForm">
@@ -27,7 +27,10 @@ export default function RoundForm({selectedCourse, selectedGolfers, selectCourse
                     updateGolferSearchTerm={updateGolferSearchTerm}
                 />
             </div>
-            <button onClick={() => addGroup({course: golfState.courses[0], golfers: [golfState.golfer]})}>tee off</button>
+            <button onClick={() => {
+                addGroup({course: selectedCourse, golfers: selectedGolfers})
+                history.push('/round')
+            }}>tee off</button>
         </div>
     )
 } 

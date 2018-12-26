@@ -1,10 +1,11 @@
 import React from 'react'
 
-export default function Gate({loginGolfer, addGolfer}) {
+export default function Gate({history, loginGolfer, addGolfer}) {
     return (
         <form className='Gate' onSubmit={event => {
             event.preventDefault()
             loginGolfer({name: event.target.name.value, password: event.target.password.value})
+            history.push('/')
         }}>
             <label name='name'>
                 Name:
@@ -18,6 +19,7 @@ export default function Gate({loginGolfer, addGolfer}) {
             <input type='button' value='register' onClick={event => {
                 event.preventDefault()
                 addGolfer(event.target.form[0].value)
+                history.push('/')
             }}/>
         </form>
     )

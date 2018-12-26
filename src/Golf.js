@@ -14,18 +14,13 @@ export default function Golf(props) {
     // page is loading
     return (props.isLoading && <LoadingPage />) ||
     // not logged in or at login page
-    (((!isLoggedIn && (props.location.pathname !== '/login' && <Redirect to='/login'/>)) ||
-    // logged in and at login page
-    (isLoggedIn && (props.location.pathname === '/login' && <Redirect to='/'/>))) ||
-    // logged in but not playing round or at clubhouse
-    // not at teetime either
-    // ((isLoggedIn && !isPlayingRound) && ((props.location.pathname !== '/clubhouse' && props.location.pathname !== '/teetime') && <Redirect to='/clubhouse'/>)) ||
-        (<div className="Golf">
+    ((!isLoggedIn && (props.location.pathname !== '/login' && <Redirect to='/login'/>)) ||
+    (   <div className="Golf">
             <GolfNav {...props} />
             <Switch>
                 <Route exact
                     path="/login"
-                    render={routeProps => <Gate loginGolfer={props.loginGolfer} addGolfer={props.addGolfer}/>}
+                    render={routeProps => <Gate history={routeProps.history} loginGolfer={props.loginGolfer} addGolfer={props.addGolfer}/>}
                 />
                 <Route exact
                     path="/"
@@ -36,6 +31,7 @@ export default function Golf(props) {
                     render={routeProps => {
                         return (
                             <RoundForm golfState={golfState} 
+                                history={routeProps.history}
                                 selectedCourse={props.selectedCourse}
                                 selectedGolfers={props.selectedGolfers}
                                 selectCourse={props.selectCourse}
@@ -73,6 +69,6 @@ export default function Golf(props) {
                     }}
                 />
             </Switch>
-        </div>)
-    )
+        </div>
+    ))
 }
